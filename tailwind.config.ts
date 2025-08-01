@@ -68,6 +68,19 @@ export default {
 				md: 'calc(var(--radius) - 2px)',
 				sm: 'calc(var(--radius) - 4px)'
 			},
+			boxShadow: {
+				'elegant': 'var(--shadow-elegant)',
+				'card': 'var(--shadow-card)',
+			},
+			backgroundImage: {
+				'gradient-subtle': 'var(--gradient-subtle)',
+			},
+			transitionProperty: {
+				'smooth': 'var(--transition-smooth)',
+			},
+			fontFamily: {
+				'serif': ['Times New Roman', 'serif'],
+			},
 			keyframes: {
 				'accordion-down': {
 					from: {
