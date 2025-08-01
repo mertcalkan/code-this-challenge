@@ -65,11 +65,11 @@ const Index = () => {
         <div className="grid grid-cols-5 gap-4 max-w-6xl mx-auto mb-12">
           {artworks.map((artwork, index) => {
             const transforms = [
-              "translate-y-2 -rotate-1",
-              "-translate-y-1 rotate-2", 
-              "translate-y-3 -rotate-1",
-              "-translate-y-2 rotate-1",
-              "translate-y-1 -rotate-2"
+              "-skew-y-3",
+              "-skew-y-1", 
+              "skew-y-0",
+              "skew-y-1",
+              "skew-y-3"
             ];
             
             return (
