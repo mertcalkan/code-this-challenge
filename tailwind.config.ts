@@ -79,6 +79,7 @@ export default {
 				'smooth': 'var(--transition-smooth)',
 			},
 			fontFamily: {
+				'sans': ['Arimo', 'ui-sans-serif', 'system-ui', 'sans-serif'],
 				'serif': ['Times New Roman', 'serif'],
 			},
 			keyframes: {

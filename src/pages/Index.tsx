@@ -61,35 +61,42 @@ const Index = () => {
           </div>
         </div>
 
-        {/* Art Gallery */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 mb-12">
-          {artworks.map((artwork, index) => (
-            <Card 
-              key={artwork.id} 
-              className="group overflow-hidden bg-card border-border shadow-card hover:shadow-elegant transition-all duration-500 hover:scale-105 cursor-pointer"
-              style={{
-                animationDelay: `${index * 100}ms`
-              }}
-            >
-              <div className="aspect-[4/3] overflow-hidden">
-                <img
-                  src={artwork.image}
-                  alt={artwork.alt}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                />
-              </div>
-            </Card>
-          ))}
-        </div>
-
-        <div className="text-center">
-          <Button 
-            variant="accent" 
-            size="lg" 
-            className="text-lg px-8 py-6 rounded-xl font-semibold"
-          >
-            Keşfetmeye Başla
-          </Button>
+        {/* Art Gallery - Exhibition Style */}
+        <div className="relative max-w-6xl mx-auto h-[600px] mb-12">
+          {artworks.map((artwork, index) => {
+            const positions = [
+              // İlk kutu: hafif aşağıya kaydırılmış ve sola hafif eğimli
+              { transform: 'translate-y-16 -rotate-6', left: '5%', top: '20%' },
+              // İkinci kutu: biraz yukarıda ve sağa eğimli  
+              { transform: 'translate-y-4 rotate-12', left: '25%', top: '10%' },
+              // Üçüncü kutu: en altta ve düz
+              { transform: 'translate-y-32 rotate-0', left: '45%', top: '35%' },
+              // Dördüncü kutu: yukarıda ve sola eğimli
+              { transform: '-translate-y-8 -rotate-12', left: '65%', top: '5%' },
+              // Beşinci kutu: ortada ve sağa eğimli
+              { transform: 'translate-y-12 rotate-6', left: '80%', top: '25%' }
+            ];
+            
+            return (
+              <Card 
+                key={artwork.id} 
+                className={`group absolute overflow-hidden bg-card border-border shadow-card hover:shadow-elegant transition-all duration-700 hover:scale-110 cursor-pointer w-48 h-64 ${positions[index].transform}`}
+                style={{
+                  left: positions[index].left,
+                  top: positions[index].top,
+                  animationDelay: `${index * 200}ms`
+                }}
+              >
+                <div className="w-full h-full overflow-hidden">
+                  <img
+                    src={artwork.image}
+                    alt={artwork.alt}
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                  />
+                </div>
+              </Card>
+            );
+          })}
         </div>
       </section>
 
