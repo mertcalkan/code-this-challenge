@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import Navigation from "@/components/Navigation";
 import artCircles from "@/assets/art-circles.jpg";
 import artSpiral from "@/assets/art-spiral.jpg";
 import artRadial from "@/assets/art-radial.jpg";
@@ -37,8 +38,10 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-gradient-subtle">
-      <div className="container mx-auto px-4 py-16">
-        {/* Header */}
+      <Navigation />
+      
+      {/* Hero Section */}
+      <section id="hero" className="container mx-auto px-4 pt-32 pb-16">
         <div className="text-center mb-16">
           <h1 className="text-6xl md:text-7xl font-serif italic text-foreground mb-6 tracking-wide">
             Artorithm
@@ -79,17 +82,145 @@ const Index = () => {
           ))}
         </div>
 
-        {/* Call to Action */}
         <div className="text-center">
           <Button 
             variant="accent" 
             size="lg" 
             className="text-lg px-8 py-6 rounded-xl font-semibold"
           >
-            Daha fazla
+            Keşfetmeye Başla
           </Button>
         </div>
-      </div>
+      </section>
+
+      {/* Kreatif Kodlama Nedir */}
+      <section id="creative-coding" className="py-20 bg-card/30">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto text-center">
+            <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-8">
+              Kreatif Kodlama Nedir?
+            </h2>
+            <p className="text-xl text-muted-foreground leading-relaxed mb-8">
+              Kreatif kodlama, sanat ve teknolojinin buluştuğu nokta. Matematiksel algoritmaları, veri yapılarını ve programlama dillerini kullanarak görsel sanat eserleri, interaktif deneyimler ve dijital yaratımlar oluşturma sanatıdır.
+            </p>
+            <div className="grid md:grid-cols-2 gap-8 text-left">
+              <div>
+                <h3 className="text-2xl font-semibold text-foreground mb-4">Algoritmik Sanat</h3>
+                <p className="text-muted-foreground">
+                  Matematiksel formüller ve algoritmalar kullanarak benzersiz görsel kompozisyonlar yaratın.
+                </p>
+              </div>
+              <div>
+                <h3 className="text-2xl font-semibold text-foreground mb-4">İnteraktif Deneyimler</h3>
+                <p className="text-muted-foreground">
+                  Kullanıcı etkileşimleriyle değişen, canlı ve dinamik dijital sanat eserleri oluşturun.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Çalışmalarımız */}
+      <section id="works" className="py-20">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-8">
+              Çalışmalarımız
+            </h2>
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+              Algoritmalar ve kod ile yarattığımız sanat eserlerini keşfedin.
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {artworks.slice(0, 3).map((artwork) => (
+              <Card key={artwork.id} className="group overflow-hidden bg-card border-border shadow-card hover:shadow-elegant transition-all duration-500">
+                <div className="aspect-[4/3] overflow-hidden">
+                  <img
+                    src={artwork.image}
+                    alt={artwork.alt}
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                  />
+                </div>
+                <div className="p-6">
+                  <h3 className="text-xl font-semibold text-foreground mb-2">Generatif Sanat Projesi</h3>
+                  <p className="text-muted-foreground">
+                    P5.js ve matematiksel algoritmalar kullanılarak oluşturulan interaktif sanat eseri.
+                  </p>
+                </div>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Felsefemiz */}
+      <section id="values" className="py-20 bg-card/30">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto text-center">
+            <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-8">
+              Felsefemiz
+            </h2>
+            <p className="text-xl text-muted-foreground leading-relaxed mb-12">
+              Kod ve sanatın birleşiminde sınırsız yaratıcılık olduğuna inanıyoruz. Her algoritma bir fırça darbesi, her fonksiyon bir renk karışımıdır.
+            </p>
+            
+            <div className="grid md:grid-cols-3 gap-8">
+              <div className="text-center">
+                <div className="w-16 h-16 bg-accent/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <span className="text-2xl">🎨</span>
+                </div>
+                <h3 className="text-xl font-semibold text-foreground mb-2">Yaratıcılık</h3>
+                <p className="text-muted-foreground">Sınırları zorlamak ve yeni ifade biçimleri keşfetmek</p>
+              </div>
+              <div className="text-center">
+                <div className="w-16 h-16 bg-accent/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <span className="text-2xl">⚙️</span>
+                </div>
+                <h3 className="text-xl font-semibold text-foreground mb-2">Teknoloji</h3>
+                <p className="text-muted-foreground">Modern araçları sanatsal ifadenin hizmetinde kullanmak</p>
+              </div>
+              <div className="text-center">
+                <div className="w-16 h-16 bg-accent/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <span className="text-2xl">🌟</span>
+                </div>
+                <h3 className="text-xl font-semibold text-foreground mb-2">İnovasyon</h3>
+                <p className="text-muted-foreground">Sürekli öğrenme ve gelişim ile yenilikçi çözümler</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* İletişim */}
+      <section id="contact" className="py-20">
+        <div className="container mx-auto px-4">
+          <div className="max-w-2xl mx-auto text-center">
+            <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-8">
+              İletişim
+            </h2>
+            <p className="text-xl text-muted-foreground mb-12">
+              Kreatif kodlama dünyasında birlikte yolculuğa çıkmaya hazır mısınız?
+            </p>
+            
+            <div className="space-y-6">
+              <Button 
+                variant="accent" 
+                size="lg" 
+                className="text-lg px-8 py-6 rounded-xl font-semibold w-full md:w-auto"
+              >
+                Bizimle İletişime Geçin
+              </Button>
+              
+              <div className="flex flex-col md:flex-row items-center justify-center gap-8 text-muted-foreground">
+                <div>📧 hello@artorithm.com</div>
+                <div>📱 +90 555 123 45 67</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* Floating Elements */}
       <div className="fixed top-20 left-10 w-2 h-2 bg-accent/30 rounded-full animate-pulse"></div>
