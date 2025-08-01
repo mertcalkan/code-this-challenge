@@ -61,34 +61,21 @@ const Index = () => {
           </div>
         </div>
 
-        {/* Art Gallery - Exhibition Style */}
-        <div className="relative max-w-6xl mx-auto h-[600px] mb-12">
+        {/* Art Gallery - Grid Style */}
+        <div className="grid grid-cols-5 gap-4 max-w-6xl mx-auto mb-12">
           {artworks.map((artwork, index) => {
-            const positions = [
-              // İlk kutu: hafif aşağıya kaydırılmış ve sola yatırılmış (3D)
-              { transform: 'translate-y-16 rotateY(-25deg)', left: '5%', top: '20%' },
-              // İkinci kutu: biraz yukarıda ve sola yatırılmış (3D)
-              { transform: 'translate-y-4 rotateY(-15deg)', left: '25%', top: '10%' },
-              // Üçüncü kutu: en altta ve düz (merkez)
-              { transform: 'translate-y-32 rotateY(0deg)', left: '45%', top: '35%' },
-              // Dördüncü kutu: yukarıda ve sağa yatırılmış (3D)
-              { transform: '-translate-y-8 rotateY(15deg)', left: '65%', top: '5%' },
-              // Beşinci kutu: ortada ve sağa yatırılmış (3D)
-              { transform: 'translate-y-12 rotateY(25deg)', left: '80%', top: '25%' }
+            const transforms = [
+              "translate-y-2 -rotate-1",
+              "-translate-y-1 rotate-2", 
+              "translate-y-3 -rotate-1",
+              "-translate-y-2 rotate-1",
+              "translate-y-1 -rotate-2"
             ];
             
             return (
               <Card 
                 key={artwork.id} 
-                className={`group absolute overflow-hidden bg-card border-border shadow-card hover:shadow-elegant transition-all duration-700 hover:scale-110 cursor-pointer w-48 h-64`}
-                style={{
-                  left: positions[index].left,
-                  top: positions[index].top,
-                  transform: positions[index].transform,
-                  transformStyle: 'preserve-3d',
-                  perspective: '1000px',
-                  animationDelay: `${index * 200}ms`
-                }}
+                className={`group overflow-hidden bg-card border-border shadow-card hover:shadow-elegant transition-all duration-700 hover:scale-110 cursor-pointer w-full aspect-[3/4] ${transforms[index]}`}
               >
                 <div className="w-full h-full overflow-hidden">
                   <img
