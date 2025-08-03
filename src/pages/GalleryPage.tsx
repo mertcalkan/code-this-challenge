@@ -1,9 +1,12 @@
 import { Card } from "@/components/ui/card";
 import { artworks } from "@/data/artworks";
-
+import Navigation from "@/components/Navigation";
 export const GalleryPage = () => {
+  
   return (
+   
     <section className="min-h-screen bg-background py-24 px-6">
+       <Navigation />
       <div className="container mx-auto max-w-7xl space-y-12">
         {/* Başlık ve Açıklama */}
         <div className="text-center space-y-4">
