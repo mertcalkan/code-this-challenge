@@ -1,9 +1,21 @@
 import { Card } from "@/components/ui/card";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { artworks } from "@/data/artworks";
 
-
 export const HeroSection = () => {
+  const [isMobileOrTablet, setIsMobileOrTablet] = useState(false);
+
+  useEffect(() => {
+    const checkScreen = () => {
+      setIsMobileOrTablet(window.innerWidth < 1024); // lg breakpoint altı mobil/tablet kabul
+    };
+
+    checkScreen();
+    window.addEventListener("resize", checkScreen);
+
+    return () => window.removeEventListener("resize", checkScreen);
+  }, []);
+
   const rotations = [20, 12.5, 0, -12.5, -20];
   const scales = [1.1, 1.03, 1, 1.03, 1.1];
 
@@ -26,26 +38,44 @@ export const HeroSection = () => {
         </div>
       </div>
 
-      <div className="grid grid-cols-5 gap-7 max-w-6xl mx-auto mb-12">
-        {artworks.map((artwork, index) => (
-          <Card
-            key={artwork.id}
-            className="group overflow-hidden bg-card border-border shadow-card hover:shadow-elegant transition-all duration-700 hover:scale-110 cursor-pointer w-full aspect-[3/4]"
-            style={{
-              transform: `perspective(800px) rotateY(${rotations[index]}deg) scale(${scales[index]})`,
-              transformStyle: "preserve-3d",
-            }}
-          >
-            <div className="w-full h-full overflow-hidden">
+      {/* Mobil veya tablet ise grid; büyük ekranlarda transition'lı kartlar */}
+      {isMobileOrTablet ? (
+        <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 max-w-4xl mx-auto mb-12">
+          {artworks.map((artwork) => (
+            <Card
+              key={artwork.id}
+              className="overflow-hidden bg-card border-border shadow-md cursor-pointer aspect-[3/4]"
+            >
               <img
                 src={artwork.image}
                 alt={artwork.alt}
                 className="w-full h-full object-cover"
               />
-            </div>
-          </Card>
-        ))}
-      </div>
+            </Card>
+          ))}
+        </div>
+      ) : (
+        <div className="grid grid-cols-5 gap-7 max-w-6xl mx-auto mb-12">
+          {artworks.map((artwork, index) => (
+            <Card
+              key={artwork.id}
+              className="group overflow-hidden bg-card border-border shadow-card hover:shadow-elegant transition-all duration-700 hover:scale-110 cursor-pointer w-full aspect-[3/4]"
+              style={{
+                transform: `perspective(800px) rotateY(${rotations[index]}deg) scale(${scales[index]})`,
+                transformStyle: "preserve-3d",
+              }}
+            >
+              <div className="w-full h-full overflow-hidden">
+                <img
+                  src={artwork.image}
+                  alt={artwork.alt}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            </Card>
+          ))}
+        </div>
+      )}
     </section>
   );
 };
