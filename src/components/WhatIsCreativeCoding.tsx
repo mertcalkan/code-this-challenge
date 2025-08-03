@@ -1,6 +1,6 @@
 export const WhatIsCreativeCoding = () => {
   return (
-    <section id="creative-coding" className="bg-muted py-24 px-6">
+    <section id="creative-coding" className="bg-zinc-100 py-24 px-6">
       <div className="container mx-auto max-w-4xl space-y-12 text-center md:text-left">
         {/* Başlık */}
         <div className="space-y-4">

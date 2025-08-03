@@ -20,7 +20,7 @@ export const HeroSection = () => {
   const scales = [1.1, 1.03, 1, 1.03, 1.1];
 
   return (
-    <section id="hero" className="container mx-auto px-4 pt-32 pb-16">
+    <section id="hero" className="container mx-auto px-4 pt-32 pb-16 bg-background">
       <div className="text-center mb-16">
         <h1 className="text-6xl md:text-7xl font-serif italic text-foreground mb-6 tracking-wide">
           Artorithm
