@@ -13,7 +13,7 @@ export const ContactSection = () => {
         {/* Grid Bilgi Kartları */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 text-base text-muted-foreground">
           <div className="p-6 rounded-lg bg-background border shadow-sm">
-            <p className="font-medium text-foreground mb-2">📩 E-posta</p>
+            <p className="font-medium text-foreground mb-2">E-posta</p>
             <a
               href="mailto:info@artorithm.com"
               className="underline hover:text-primary transition"
@@ -23,9 +23,9 @@ export const ContactSection = () => {
           </div>
 
           <div className="p-6 rounded-lg bg-background border shadow-sm">
-            <p className="font-medium text-foreground mb-2">📷Instagram</p>
+            <p className="font-medium text-foreground mb-2">Instagram</p>
             <a
-              href="https://instagram.com/artorithm"
+              href="https://instagram.com/art.orithm"
               target="_blank"
               rel="noopener noreferrer"
               className="underline hover:text-primary transition"
@@ -37,7 +37,7 @@ export const ContactSection = () => {
           <div className="p-6 rounded-lg bg-background border shadow-sm">
             <p className="font-medium text-foreground mb-2">P5.js Sketch Galerisi</p>
             <a
-              href="https://editor.p5js.org/your-profile/sketches"
+              href="https://editor.p5js.org/artorithm/sketches"
               target="_blank"
               rel="noopener noreferrer"
               className="underline hover:text-primary transition"

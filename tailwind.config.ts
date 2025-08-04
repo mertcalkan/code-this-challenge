@@ -81,6 +81,8 @@ export default {
 			fontFamily: {
 				'sans': ['Arimo', 'ui-sans-serif', 'system-ui', 'sans-serif'],
 				'serif': ['Times New Roman', 'serif'],
+				'nunito': ['Times New Roman', 'sans-serif'],
+				
 			},
 			keyframes: {
 				'accordion-down': {

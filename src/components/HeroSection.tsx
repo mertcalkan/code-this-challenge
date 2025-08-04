@@ -1,26 +1,24 @@
 import { Card } from "@/components/ui/card";
-import { useState, useEffect } from "react";
-import { artworks } from "@/data/artworks";
+import { useState, useEffect, useRef } from "react";
+import { videoWorks } from "@/data/videoWorks";
 
 export const HeroSection = () => {
   const [isMobileOrTablet, setIsMobileOrTablet] = useState(false);
 
   useEffect(() => {
     const checkScreen = () => {
-      setIsMobileOrTablet(window.innerWidth < 1024); // lg breakpoint altı mobil/tablet kabul
+      setIsMobileOrTablet(window.innerWidth < 1024);
     };
 
     checkScreen();
     window.addEventListener("resize", checkScreen);
-
     return () => window.removeEventListener("resize", checkScreen);
   }, []);
 
   const rotations = [20, 12.5, 0, -12.5, -20];
   const scales = [1.1, 1.03, 1, 1.03, 1.1];
 
-  // Sadece ilk 5 görseli al
-  const visibleArtworks = artworks.slice(0, 5);
+  const visibleVideoWorks = videoWorks.slice(0, 5);
 
   return (
     <section id="hero" className="container mx-auto px-4 pt-32 pb-16 bg-background">
@@ -41,25 +39,32 @@ export const HeroSection = () => {
         </div>
       </div>
 
-      {/* Mobil veya tablet ise grid; büyük ekranlarda transition'lı kartlar */}
       {isMobileOrTablet ? (
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 max-w-4xl mx-auto mb-12">
-          {visibleArtworks.map((artwork) => (
+          {visibleVideoWorks.map((artwork) => (
             <Card
               key={artwork.id}
               className="overflow-hidden bg-card border-border shadow-md cursor-pointer aspect-[3/4]"
             >
-              <img
-                src={artwork.image}
-                alt={artwork.alt}
+              <video
+                src={artwork.video}
+                muted
+                loop
+                playsInline
+                preload="none"
                 className="w-full h-full object-cover"
+                onMouseEnter={(e) => e.currentTarget.play()}
+                onMouseLeave={(e) => {
+                  e.currentTarget.pause();
+                  e.currentTarget.currentTime = 0; // ilk kareye dönsün
+                }}
               />
             </Card>
           ))}
         </div>
       ) : (
         <div className="grid grid-cols-5 gap-7 max-w-6xl mx-auto mb-12">
-          {visibleArtworks.map((artwork, index) => (
+          {visibleVideoWorks.map((artwork, index) => (
             <Card
               key={artwork.id}
               className="group overflow-hidden bg-card border-border shadow-card hover:shadow-elegant transition-all duration-700 hover:scale-110 cursor-pointer w-full aspect-[3/4]"
@@ -68,13 +73,19 @@ export const HeroSection = () => {
                 transformStyle: "preserve-3d",
               }}
             >
-              <div className="w-full h-full overflow-hidden">
-                <img
-                  src={artwork.image}
-                  alt={artwork.alt}
-                  className="w-full h-full object-cover"
-                />
-              </div>
+              <video
+                src={artwork.video}
+                muted
+                loop
+                playsInline
+                preload="none"
+                className="w-full h-full object-cover"
+                onMouseEnter={(e) => e.currentTarget.play()}
+                onMouseLeave={(e) => {
+                  e.currentTarget.pause();
+                  e.currentTarget.currentTime = 0;
+                }}
+              />
             </Card>
           ))}
         </div>
