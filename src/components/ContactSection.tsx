@@ -23,7 +23,7 @@ export const ContactSection = () => {
           </div>
 
           <div className="p-6 rounded-lg bg-background border shadow-sm">
-            <p className="font-medium text-foreground mb-2">📷 Instagram</p>
+            <p className="font-medium text-foreground mb-2">📷Instagram</p>
             <a
               href="https://instagram.com/artorithm"
               target="_blank"
@@ -35,7 +35,7 @@ export const ContactSection = () => {
           </div>
 
           <div className="p-6 rounded-lg bg-background border shadow-sm">
-            <p className="font-medium text-foreground mb-2">💻 P5.js Sketch Galerisi</p>
+            <p className="font-medium text-foreground mb-2">P5.js Sketch Galerisi</p>
             <a
               href="https://editor.p5js.org/your-profile/sketches"
               target="_blank"
