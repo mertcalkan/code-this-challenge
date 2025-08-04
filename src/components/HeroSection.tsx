@@ -19,6 +19,9 @@ export const HeroSection = () => {
   const rotations = [20, 12.5, 0, -12.5, -20];
   const scales = [1.1, 1.03, 1, 1.03, 1.1];
 
+  // Sadece ilk 5 görseli al
+  const visibleArtworks = artworks.slice(0, 5);
+
   return (
     <section id="hero" className="container mx-auto px-4 pt-32 pb-16 bg-background">
       <div className="text-center mb-16">
@@ -41,7 +44,7 @@ export const HeroSection = () => {
       {/* Mobil veya tablet ise grid; büyük ekranlarda transition'lı kartlar */}
       {isMobileOrTablet ? (
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 max-w-4xl mx-auto mb-12">
-          {artworks.map((artwork) => (
+          {visibleArtworks.map((artwork) => (
             <Card
               key={artwork.id}
               className="overflow-hidden bg-card border-border shadow-md cursor-pointer aspect-[3/4]"
@@ -56,7 +59,7 @@ export const HeroSection = () => {
         </div>
       ) : (
         <div className="grid grid-cols-5 gap-7 max-w-6xl mx-auto mb-12">
-          {artworks.map((artwork, index) => (
+          {visibleArtworks.map((artwork, index) => (
             <Card
               key={artwork.id}
               className="group overflow-hidden bg-card border-border shadow-card hover:shadow-elegant transition-all duration-700 hover:scale-110 cursor-pointer w-full aspect-[3/4]"

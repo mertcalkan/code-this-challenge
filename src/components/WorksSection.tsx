@@ -1,21 +1,16 @@
-import { useState } from "react";
-import { Card } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { AnimatePresence, motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { artworks } from "@/data/artworks";
-
-
-
+import { Button } from "@/components/ui/button";
 
 export const WorksSection = () => {
-  const [currentIndex, setCurrentIndex] = useState(0);
   const navigate = useNavigate();
 
-  const goToPrev = () =>
-    setCurrentIndex((prev) => (prev === 0 ? artworks.length - 1 : prev - 1));
-  const goToNext = () =>
-    setCurrentIndex((prev) => (prev === artworks.length - 1 ? 0 : prev + 1));
+  const heights = [
+    ["h-[40%]", "h-[60%]"], // 1. sütun: 2+3
+    ["h-[60%]", "h-[40%]"], // 2. sütun: 3+2
+    ["h-[40%]", "h-[60%]"], // 3. sütun: 2+3
+    ["h-[60%]", "h-[40%]"], // 4. sütun: 3+2
+  ];
 
   return (
     <section id="works" className="py-20">
@@ -29,53 +24,32 @@ export const WorksSection = () => {
           </p>
         </div>
 
-        <div className="relative flex items-center justify-center">
-          <button
-            onClick={goToPrev}
-            className="absolute left-0 md:left-4 top-1/2 transform -translate-y-1/2 bg-primary text-white px-3 py-2 rounded-full z-10 hover:bg-primary/80"
-          >
-            ←
-          </button>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 h-[600px] mb-12">
+          {Array.from({ length: 4 }).map((_, colIdx) => (
+            <div key={colIdx} className="flex flex-col gap-4 h-full">
+              {[0, 1].map((rowIdx) => {
+                const index = colIdx * 2 + rowIdx;
+                const height = heights[colIdx][rowIdx];
+                const art = artworks[index];
 
-          <div className="w-full md:w-[600px] max-w-[90%] aspect-[4/3] mx-auto">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={currentIndex}
-                initial={{ opacity: 0, x: 50 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -50 }}
-                transition={{ duration: 0.6 }}
-              >
-                <Card className="group overflow-hidden bg-card border-border shadow-card hover:shadow-elegant transition-all duration-500">
-                  <div className="overflow-hidden aspect-[4/3]">
+                return (
+                  <div
+                    key={index}
+                    className={`overflow-hidden rounded-xl bg-muted ${height}`}
+                  >
                     <img
-                      src={artworks[currentIndex].image}
-                      alt={artworks[currentIndex].alt}
-                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                      src={art.image}
+                      alt={art.alt}
+                      className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
                     />
                   </div>
-                  <div className="p-6">
-                    <h3 className="text-xl font-semibold text-foreground mb-2">
-                      Generatif Sanat Projesi
-                    </h3>
-                    <p className="text-muted-foreground">
-                      P5.js ve matematiksel algoritmalar kullanılarak oluşturulan interaktif sanat eseri.
-                    </p>
-                  </div>
-                </Card>
-              </motion.div>
-            </AnimatePresence>
-          </div>
-
-          <button
-            onClick={goToNext}
-            className="absolute right-0 md:right-4 top-1/2 transform -translate-y-1/2 bg-primary text-white px-3 py-2 rounded-full z-10 hover:bg-primary/80"
-          >
-            →
-          </button>
+                );
+              })}
+            </div>
+          ))}
         </div>
 
-        <div className="text-center mt-12">
+        <div className="text-center">
           <Button
             onClick={() => navigate("/gallery")}
             className="px-6 py-3 bg-primary text-white font-semibold rounded-lg hover:bg-primary/80 transition"
