@@ -83,6 +83,7 @@ export const HeroSection = () => {
                 playsInline
                 preload="auto"
                 className="w-full h-full object-cover"
+                 onContextMenu={(e) => e.preventDefault()}
               />
             </Card>
           ))}
