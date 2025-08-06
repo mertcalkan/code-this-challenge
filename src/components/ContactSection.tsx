@@ -15,7 +15,7 @@ export const ContactSection = () => {
           <div className="p-6 rounded-lg bg-background border shadow-sm">
             <p className="font-medium text-foreground mb-2">E-posta</p>
             <a
-              href="mailto:info@artorithm.com"
+              href="mailto:artorithm20@gmail.com"
               className="underline hover:text-primary transition"
             >
               info@artorithm.com
