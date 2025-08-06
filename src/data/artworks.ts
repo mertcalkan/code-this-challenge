@@ -5,7 +5,7 @@ import artFlower from "@/assets/flower.png";
 import artFractal from "@/assets/fractal.jpg";
 import artTriangle from "@/assets/triangle.jpg"
 import artShader from "@/assets/Shader.jpg";
-
+import artMonaLisa from "@/assets/mona lisa.png";
 
 export const artworks = [
   { id: 1, image: artAquarium, alt: "Concentric circles algorithmic art" },
@@ -15,6 +15,6 @@ export const artworks = [
   { id: 5, image: artFractal, alt: "Geometric mandala algorithmic art" },
   { id: 6, image: artTriangle, alt: "Geometric mandala algorithmic art" },
   { id: 7, image: artShader, alt: "Geometric mandala algorithmic art" },
-    { id: 7, image: artShader, alt: "Geometric mandala algorithmic art" }
-  
+  { id: 7, image: artMonaLisa, alt: "Geometric mandala algorithmic art" }
+
 ];
