@@ -1,67 +1,72 @@
-"use client"
+"use client";
 
-import { useState, useEffect } from "react"
-import { X, ChevronLeft, ChevronRight } from "lucide-react"
-import { Dialog, DialogContent } from "@/components/ui/dialog"
-import { Button } from "@/components/ui/button"
+import { useState, useEffect } from "react";
+import { X, ChevronLeft, ChevronRight } from "lucide-react";
+import { Dialog, DialogContent } from "@/components/ui/dialog";
+import { Button } from "@/components/ui/button";
 
 interface GalleryImage {
-  id: number
-  src: string
-  alt: string
-  category?: string
+  id: number;
+  src: string;
+  alt: string;
+  category?: string;
 }
 
 interface ImageGalleryPopupProps {
-  images: GalleryImage[]
-  initialIndex: number
-  isOpen: boolean
-  onClose: () => void
+  images: GalleryImage[];
+  initialIndex: number;
+  isOpen: boolean;
+  onClose: () => void;
 }
 
-export default function ImageGalleryPopup({ images, initialIndex, isOpen, onClose }: ImageGalleryPopupProps) {
-  const [currentIndex, setCurrentIndex] = useState(initialIndex)
+export default function ImageGalleryPopup({
+  images,
+  initialIndex,
+  isOpen,
+  onClose,
+}: ImageGalleryPopupProps) {
+  const [currentIndex, setCurrentIndex] = useState(initialIndex);
 
   useEffect(() => {
-    setCurrentIndex(initialIndex)
-  }, [initialIndex])
+    setCurrentIndex(initialIndex);
+  }, [initialIndex]);
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
-      if (!isOpen) return
+      if (!isOpen) return;
 
       switch (event.key) {
         case "Escape":
-          onClose()
-          break
+          onClose();
+          break;
         case "ArrowLeft":
-          goToPrevious()
-          break
+          goToPrevious();
+          break;
         case "ArrowRight":
-          goToNext()
-          break
+          goToNext();
+          break;
       }
-    }
+    };
 
-    window.addEventListener("keydown", handleKeyDown)
-    return () => window.removeEventListener("keydown", handleKeyDown)
-  }, [isOpen, currentIndex])
-
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [isOpen, currentIndex]);
+  const isMobile = typeof window !== "undefined" && window.innerWidth <= 768;
   const goToNext = () => {
-    setCurrentIndex((prev) => (prev + 1) % images.length)
-  }
+    setCurrentIndex((prev) => (prev + 1) % images.length);
+  };
 
   const goToPrevious = () => {
-    setCurrentIndex((prev) => (prev - 1 + images.length) % images.length)
-  }
+    setCurrentIndex((prev) => (prev - 1 + images.length) % images.length);
+  };
 
   const getFileName = (src: string) => {
-    return src.split("/").pop()?.split(".")[0] || ""
-  }
+    return src.split("/").pop()?.split(".")[0] || "";
+  };
 
-  if (images.length === 0) return null
+  if (images.length === 0) return null;
 
-  const currentImage = images[currentIndex]
+  const currentImage = images[currentIndex];
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
@@ -71,10 +76,10 @@ export default function ImageGalleryPopup({ images, initialIndex, isOpen, onClos
           <Button
             variant="ghost"
             size="icon"
-            className="absolute top-4 right-4 z-50 bg-white/10 text-white hover:bg-white/20 w-10 h-10"
+            className="absolute top-6 right-6 z-50 bg-white/10 text-white hover:bg-white/20 w-14 h-14"
             onClick={onClose}
           >
-            <X className="w-6 h-6" />
+            <X style={{ width: "32px", height: "32px" }} />
           </Button>
 
           {/* Previous Button */}
@@ -82,13 +87,12 @@ export default function ImageGalleryPopup({ images, initialIndex, isOpen, onClos
             <Button
               variant="ghost"
               size="icon"
-              className="absolute left-4 top-1/2 -translate-y-1/2 z-50 text-white hover:bg-white/20 hover:text-white p-8 w-14 h-14 flex items-center justify-center"
+              className="absolute left-6 top-1/2 -translate-y-1/2 z-50 text-white hover:bg-white/20 hover:text-white w-16 h-16 flex items-center justify-center"
               onClick={goToPrevious}
             >
-              <ChevronLeft className="w-8 h-8" />
+               <ChevronLeft style={{ width: isMobile ? "32px" : "64px", height: isMobile ? "32px" : "64px" }} />
             </Button>
           )}
-
           <div className="relative w-full h-full flex items-center justify-center p-4 overflow-hidden">
             <div className="max-h-[90vh] max-w-[80%] flex items-center justify-center">
               <img
@@ -104,10 +108,11 @@ export default function ImageGalleryPopup({ images, initialIndex, isOpen, onClos
             <Button
               variant="ghost"
               size="icon"
-              className="absolute right-4 top-1/2 -translate-y-1/2 z-50 text-white hover:bg-white/20 hover:text-white p-8 w-14 h-14 flex items-center justify-center"
+              className="absolute right-6 top-1/2 -translate-y-1/2 z-50 text-white hover:bg-white/20 hover:text-white w-16 h-16 flex items-center justify-center"
               onClick={goToNext}
             >
-              <ChevronRight className="w-8 h-8" />
+             <ChevronRight style={{ width: isMobile ? "32px" : "64px", height: isMobile ? "32px" : "64px" }} />
+
             </Button>
           )}
 
@@ -117,11 +122,13 @@ export default function ImageGalleryPopup({ images, initialIndex, isOpen, onClos
               <div>
                 {currentIndex + 1} / {images.length}
               </div>
-              <div className="text-xs opacity-80">{getFileName(currentImage.src)}</div>
+              <div className="text-xs opacity-80">
+                {getFileName(currentImage.alt)}
+              </div>
             </div>
           )}
         </div>
       </DialogContent>
     </Dialog>
-  )
+  );
 }
