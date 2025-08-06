@@ -4,6 +4,7 @@ import { videoWorks } from "@/data/videoWorks";
 
 export const HeroSection = () => {
   const [isMobileOrTablet, setIsMobileOrTablet] = useState(false);
+  const videoRefs = useRef([]);
 
   useEffect(() => {
     const checkScreen = () => {
@@ -15,10 +16,35 @@ export const HeroSection = () => {
     return () => window.removeEventListener("resize", checkScreen);
   }, []);
 
+  useEffect(() => {
+    // Sayfa yüklendiğinde videoların ilk kareleri gösterilsin
+    videoRefs.current.forEach((video) => {
+      if (video) {
+        video.load();
+        video.pause();
+        video.currentTime = 0;
+      }
+    });
+  }, []);
+
   const rotations = [20, 12.5, 0, -12.5, -20];
   const scales = [1.1, 1.03, 1, 1.03, 1.1];
-
   const visibleVideoWorks = videoWorks.slice(0, 5);
+
+  const handleTouch = (index: number) => {
+    const video = videoRefs.current[index];
+    if (video) {
+      video.play();
+    }
+  };
+
+  const handleTouchEnd = (index: number) => {
+    const video = videoRefs.current[index];
+    if (video) {
+      video.pause();
+      video.currentTime = 0;
+    }
+  };
 
   return (
     <section id="hero" className="container mx-auto px-4 pt-32 pb-16 bg-background">
@@ -39,25 +65,24 @@ export const HeroSection = () => {
         </div>
       </div>
 
+      {/* Mobil veya tablet ise grid */}
       {isMobileOrTablet ? (
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 max-w-4xl mx-auto mb-12">
-          {visibleVideoWorks.map((artwork) => (
+          {visibleVideoWorks.map((artwork, index) => (
             <Card
               key={artwork.id}
               className="overflow-hidden bg-card border-border shadow-md cursor-pointer aspect-[3/4]"
+              onTouchStart={() => handleTouch(index)}
+              onTouchEnd={() => handleTouchEnd(index)}
             >
               <video
+                ref={(el) => (videoRefs.current[index] = el)}
                 src={artwork.video}
                 muted
                 loop
                 playsInline
-                preload="none"
+                preload="auto"
                 className="w-full h-full object-cover"
-                onMouseEnter={(e) => e.currentTarget.play()}
-                onMouseLeave={(e) => {
-                  e.currentTarget.pause();
-                  e.currentTarget.currentTime = 0; // ilk kareye dönsün
-                }}
               />
             </Card>
           ))}
@@ -74,11 +99,12 @@ export const HeroSection = () => {
               }}
             >
               <video
+                ref={(el) => (videoRefs.current[index] = el)}
                 src={artwork.video}
                 muted
                 loop
                 playsInline
-                preload="none"
+                preload="auto"
                 className="w-full h-full object-cover"
                 onMouseEnter={(e) => e.currentTarget.play()}
                 onMouseLeave={(e) => {

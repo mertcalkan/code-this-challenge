@@ -1,6 +1,6 @@
 export const ContactSection = () => {
   return (
-    <section id="contact" className="py-24 px-6 bg-background">
+    <section id="contact" className="mt-20 py-24 px-6 bg-background">
       <div className="container mx-auto max-w-5xl space-y-16">
         {/* Başlık ve Açıklama */}
         <div className="text-center md:text-left space-y-4">
