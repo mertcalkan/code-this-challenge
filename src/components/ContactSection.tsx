@@ -18,7 +18,7 @@ export const ContactSection = () => {
               href="mailto:artorithm20@gmail.com"
               className="underline hover:text-primary transition"
             >
-              info@artorithm.com
+              artorithm20@gmail.com
             </a>
           </div>
 
