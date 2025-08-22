@@ -5,6 +5,7 @@ import { WhatIsCreativeCoding } from "@/components/WhatIsCreativeCoding";
 import { Philosophy } from "@/components/Philosophy";
 import { StudentWorks } from "@/components/StudentWorks";
 import { ContactSection } from "@/components/ContactSection";
+import { Footer } from "@/components/Footer";
 
 const Index = () => {
   return (
@@ -15,6 +16,8 @@ const Index = () => {
       <Philosophy />
       <WorksSection />
       <ContactSection />
+        <Footer />
+
     </div>
   );
 };

@@ -30,7 +30,7 @@ export const ContactSection = () => {
               rel="noopener noreferrer"
               className="underline hover:text-primary transition"
             >
-              @artorithm
+              @art.orithm
             </a>
           </div>
 
