@@ -37,12 +37,12 @@ export const ContactSection = () => {
           <div className="p-6 rounded-lg bg-background border shadow-sm">
             <p className="font-medium text-foreground mb-2">P5.js Sketch Galerisi</p>
             <a
-              href="https://editor.p5js.org/artorithm/sketches"
+              href="https://openprocessing.org/user/542529/?view=sketches"
               target="_blank"
               rel="noopener noreferrer"
               className="underline hover:text-primary transition"
             >
-              editor.p5js.org
+              OpenProcessing
             </a>
           </div>
         </div>
